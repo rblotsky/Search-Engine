@@ -1,0 +1,4 @@
+*.exe
+*.o
+inputFolder/titles.txt
+inputFolder/titles_top1m.txt

@@ -1,0 +1,20 @@
+#ifndef COLOURS_INCLUDED
+    #define BLACK_REG "\033[0;30m"
+    #define RED_REG "\033[0;31m"
+    #define GREEN_REG "\033[0;32m"
+    #define YELLOW_REG "\033[0;33m"
+    #define BLUE_REG "\033[0;34m"
+    #define PURPLE_REG "\033[0;35m"
+    #define CYAN_REG "\033[0;36m"
+    #define WHITE_REG "\033[0;37m"
+    #define BLACK_BOLD "\033[1;30m"
+    #define RED_BOLD "\033[1;31m"
+    #define GREEN_BOLD "\033[1;32m"
+    #define YELLOW_BOLD "\033[1;33m"
+    #define BLUE_BOLD "\033[1;34m"
+    #define PURPLE_BOLD "\033[1;35m"
+    #define CYAN_BOLD "\033[1;36m"
+    #define WHITE_BOLD "\033[1;37m"
+    #define DEFAULT_COLOUR "\033[0m"
+    #define COLOURS_INCLUDED 1
+#endif
