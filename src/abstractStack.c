@@ -163,23 +163,8 @@ void ClearAbstractStack(AbstractStackNode* head)
     }
 }
 
-unsigned long GetStackNodeMemory(AbstractStackNode* node)
+unsigned long long GetStackNodeMemory(AbstractStackNode* node)
 {
     return sizeof(int) + sizeof(void*) + sizeof(AbstractStackNode*);
-}
-
-int UpdateNodeCachedLengths(AbstractStackNode* head)
-{
-    // Recursively traverses the nodes, setting each node's lengthFromHere variable to the amount of nodes after it
-    if(head == NULL)
-    {
-        return 1;
-    }
-
-    else
-    {
-        head->lengthFromHere = UpdateNodeCachedLengths(head->next);
-        return head->lengthFromHere+1;
-    }
 }
 

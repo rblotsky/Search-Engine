@@ -32,8 +32,6 @@ AbstractStackNode* CreateEmptyStackNode();
 
 void ClearAbstractStack(AbstractStackNode* head);
 
-unsigned long GetStackNodeMemory(AbstractStackNode* node);
-
-int UpdateNodeCachedLengths(AbstractStackNode* head);
+unsigned long long GetStackNodeMemory(AbstractStackNode* node);
 
 #endif

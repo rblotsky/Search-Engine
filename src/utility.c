@@ -198,7 +198,6 @@ AbstractStackNode* CreateIntersectionStack(AbstractStackNode* stack1, AbstractSt
 
         // Tries retrieving the node containing the current node's itemPointer from this stack
         foundNodeWithPointer = GetStackNodeByContentsPtr(retrievedTableNode, currentNode->itemPointer);
-        printf("Finished finding node with pointer\n");
 
         // If it finds a node with that pointer, creates a copy and puts it in the intersection stack
         if(foundNodeWithPointer != NULL)
@@ -216,9 +215,6 @@ AbstractStackNode* CreateIntersectionStack(AbstractStackNode* stack1, AbstractSt
         retrievedTableNode = NULL;
         foundNodeWithPointer = NULL;
     }
-
-    // Updates the length values from the array
-    UpdateNodeCachedLengths(intersection);
 
     // Clears generated hash table
     for(int i = 0; i < stack1Table->size; i++)

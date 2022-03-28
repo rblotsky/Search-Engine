@@ -309,9 +309,6 @@ void MenuSearchNodes(HashTable* wordHashTable)
     // Frees keywords list
     free(keywords);
 
-    // Updates the lengths cached in retrievedItems
-    UpdateNodeCachedLengths(retrievedItems);
-
     // Notifies user if nothing found
     if(retrievedItems == NULL)
     {
@@ -368,9 +365,9 @@ void MenuViewIndexAnalysis(HashTable* wordHashTable, DataNode* dataNodeHead)
     int totalNodesInIndices = 0;
     int totalWordLength = 0;
     int totalDataNodes = 0;
-    unsigned long numIndicesAllocatedInTable = wordHashTable->size;
-    unsigned long totalIndexMemoryUsed = sizeof(*wordHashTable);
-    unsigned long totalDataMemoryUsed = 0;
+    unsigned long long numIndicesAllocatedInTable = wordHashTable->size;
+    unsigned long long totalIndexMemoryUsed = sizeof(*wordHashTable);
+    unsigned long long totalDataMemoryUsed = 0;
     bool displayAllIndices = false;
 
     // Prompts user if they want to display all the data
