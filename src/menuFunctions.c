@@ -442,9 +442,9 @@ void MenuViewIndexAnalysis(HashTable* wordHashTable, DataNode* dataNodeHead)
     printf("%sNumber of Data Nodes: %s%d\n", TITLE_COLOUR, INFO_COLOUR, GetNumDataNodes(dataNodeHead));
     printf("%sAverage Nodes Per Index: %s%0.2lf\n", TITLE_COLOUR, INFO_COLOUR,((float)totalNodesInIndices/(float)numSearchIndices));
     printf("%sAverage Node Length: %s%0.2lf chars\n", TITLE_COLOUR, INFO_COLOUR, ((float)totalWordLength/(float)totalDataNodes));
-    printf("%sApprox. memory occupied by data: %s%ld bytes\n", TITLE_COLOUR, INFO_COLOUR, totalDataMemoryUsed);
-    printf("%sApprox. memory occupied by indices: %s%ld bytes\n", TITLE_COLOUR, INFO_COLOUR, totalIndexMemoryUsed);
-    printf("%sIndex space usage: %s%d indices used / %ld allocated ", TITLE_COLOUR, INFO_COLOUR, numSearchIndices, numIndicesAllocatedInTable);
+    printf("%sApprox. memory occupied by data: %s%lld bytes\n", TITLE_COLOUR, INFO_COLOUR, totalDataMemoryUsed);
+    printf("%sApprox. memory occupied by indices: %s%lld bytes\n", TITLE_COLOUR, INFO_COLOUR, totalIndexMemoryUsed);
+    printf("%sIndex space usage: %s%d indices used / %lld allocated ", TITLE_COLOUR, INFO_COLOUR, numSearchIndices, numIndicesAllocatedInTable);
     printf("%s(%s%0.6lf%%%s)\n", TITLE_COLOUR, INFO_COLOUR, ((float)(numSearchIndices)/(float)(numIndicesAllocatedInTable))*100, TITLE_COLOUR);
     printf("%sNumber of index collisions: %sNope can't calculate that yet sorry.\n", TITLE_COLOUR, INFO_COLOUR);
 }
