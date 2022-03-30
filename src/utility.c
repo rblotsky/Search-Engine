@@ -144,6 +144,12 @@ AbstractStackNode* CreateIntersectionStack(AbstractStackNode* stack1, AbstractSt
     HashTable* stack1Table = NULL;
     char keyText[512];
     unsigned long tempTableIndex = 0; 
+
+    // Returns NULL if either stack is NULL
+    if(stack1 == NULL || stack2 == NULL)
+    {
+        return NULL;
+    }
     
     // Creates a hash table from the items in stack1
     stack1Table = InitializeHashTable(GetStackLength(stack1)*3);
