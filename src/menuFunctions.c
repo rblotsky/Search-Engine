@@ -369,6 +369,9 @@ void MenuViewIndexAnalysis(HashTable* wordHashTable, DataNode* dataNodeHead)
     unsigned long long totalIndexMemoryUsed = sizeof(*wordHashTable);
     unsigned long long totalDataMemoryUsed = 0;
     bool displayAllIndices = false;
+    int mostCommonWordIndex = 0;
+    int mostCommonWordIndexSize = 0;
+    int numItemsForWord = 0;
 
     // Prompts user if they want to display all the data
     printf("%sThis program permits viewing the first %d items in the index.\n", PROMPT_COLOUR, MAX_ITEMS_DISPLAYED);
@@ -383,6 +386,17 @@ void MenuViewIndexAnalysis(HashTable* wordHashTable, DataNode* dataNodeHead)
             continue;
         }
 
+        // Gets nodes stack for this index
+        currentStackNode = wordHashTable->valuesArray[i];
+
+        // Checks if this is the largest index
+        numItemsForWord = GetStackLength(currentStackNode);
+        if(numItemsForWord > mostCommonWordIndexSize)
+        {
+            mostCommonWordIndex = i;
+            mostCommonWordIndexSize = numItemsForWord;
+        }
+
         // Prints data
         if(displayAllIndices && numSearchIndices < MAX_ITEMS_DISPLAYED)
         {
@@ -391,9 +405,7 @@ void MenuViewIndexAnalysis(HashTable* wordHashTable, DataNode* dataNodeHead)
             printf("%sData Nodes: [ ",TITLE_COLOUR);
         }
 
-        // Prints all nodes in this index
-        currentStackNode = wordHashTable->valuesArray[i];
-
+        // Prints all nodes for this index
         while(currentStackNode != NULL)
         {
             // Prints data
@@ -402,8 +414,7 @@ void MenuViewIndexAnalysis(HashTable* wordHashTable, DataNode* dataNodeHead)
                 printf("%s%d ", INFO_COLOUR, ((DataNode*)(currentStackNode->itemPointer))->nodeID);
             }
 
-            // Increments some counters
-            totalNodesInIndices++;
+            // Increments counters
             totalIndexMemoryUsed += GetStackNodeMemory(currentStackNode);
 
             // Goes to next item
@@ -418,6 +429,7 @@ void MenuViewIndexAnalysis(HashTable* wordHashTable, DataNode* dataNodeHead)
 
         // Increments counters
         numSearchIndices++;
+        totalNodesInIndices += numItemsForWord;
     }
 
     // Prints that it culled something if it did
@@ -447,6 +459,7 @@ void MenuViewIndexAnalysis(HashTable* wordHashTable, DataNode* dataNodeHead)
     printf("%sIndex space usage: %s%d indices used / %lld allocated ", TITLE_COLOUR, INFO_COLOUR, numSearchIndices, numIndicesAllocatedInTable);
     printf("%s(%s%0.6lf%%%s)\n", TITLE_COLOUR, INFO_COLOUR, ((float)(numSearchIndices)/(float)(numIndicesAllocatedInTable))*100, TITLE_COLOUR);
     printf("%sNumber of index collisions: %sNope can't calculate that yet sorry.\n", TITLE_COLOUR, INFO_COLOUR);
+    printf("%sMost frequent index: %s%d ( %d nodes)\n", TITLE_COLOUR, INFO_COLOUR, mostCommonWordIndex, mostCommonWordIndexSize);
 }
 
 void MenuDisplayEntireNode(DataNode* dataListHead)
@@ -501,5 +514,73 @@ void MenuDisplayEntireNode(DataNode* dataListHead)
 
 void MenuViewSpecificIndexAnalysis(HashTable* wordHashTable)
 {
-    //TODO: View analysis of a specific index (eg. listing all its nodes, showing the search term, etc.)
+    // Variable declaration
+    char inputText[MAX_CMD_INPUT];
+    AbstractStackNode* retrievedStack = NULL;
+    AbstractStackNode* currentStackNode = NULL;
+    int numDataNodes = 0;
+    unsigned long long memoryUsed = 0;
+    int totalNodeLength = 0;
+    int numWords = 0;
+    char** extractedWords = NULL;
+
+    // Gets input from user
+    printf("%sEnter a word to view its indexing. (Only the first word will be used) (Max %d chars): %s", PROMPT_COLOUR, MAX_CMD_INPUT, USER_COLOUR);
+    fgets(inputText, MAX_CMD_INPUT, stdin);
+    fflush(stdin);
+
+    // Removes newline at end if it's present
+    if (inputText[strlen(inputText) - 1] == '\n')
+    {
+        inputText[strlen(inputText) - 1] = '\0';
+    }
+
+    // Extracts the words from the input
+    extractedWords = ExtractItems(inputText, WORD_SEPARATORS, &numWords);
+
+    // Only tries retrieving if there is at least one word
+    if(numWords >= 0)
+    {
+        // Tries retrieving a stack from the hash table
+        retrievedStack = RetrieveHashTableItem(wordHashTable, extractedWords[0]);
+
+        // If it's not NULL, prints data for it
+        if(retrievedStack != NULL)
+        {
+            // Gets initial data
+            numDataNodes = GetStackLength(retrievedStack);
+
+            // Prints all nodes within the index
+            printf("%sList of nodes in the index: \n", TITLE_COLOUR);
+            currentStackNode = retrievedStack;
+            while(currentStackNode != NULL)
+            {
+                // Displays node ID
+                printf("%s%d ", INFO_COLOUR, ((DataNode*)currentStackNode->itemPointer)->nodeID);
+
+                // Stores data from this node
+                memoryUsed += GetStackNodeMemory(currentStackNode);
+                totalNodeLength += strlen(((DataNode*)currentStackNode->itemPointer)->text);
+                
+                // Goes to next node
+                currentStackNode = currentStackNode->next;
+            }
+
+            // Prints data for this index
+            printf("\n\n");
+            printf("%sKeyword { %s%s%s }  ", TITLE_COLOUR, INFO_COLOUR, extractedWords[0], TITLE_COLOUR);
+            printf("%sTable Index { %s%ld%s}\n", TITLE_COLOUR, INFO_COLOUR, GetTableKeyIndex(wordHashTable, extractedWords[0]), TITLE_COLOUR);
+            printf("%sMemory used by this index: %s%lld\n", TITLE_COLOUR, INFO_COLOUR, memoryUsed);
+            printf("%sTotal nodes in this index: %s%d\n", TITLE_COLOUR, INFO_COLOUR, numDataNodes);
+            printf("%sAverage text length in chars: %s%0.2lf\n", TITLE_COLOUR, INFO_COLOUR, (float)totalNodeLength/(float)numDataNodes);
+        }
+    }
+
+    // Frees the extracted words
+    for(int i = 0; i < numWords; i++)
+    {
+        free(extractedWords[i]);
+    }
+
+    free(extractedWords);
 }

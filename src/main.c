@@ -29,7 +29,7 @@ int main()
     wordHashTable = InitializeHashTable(maxIndexSize);
 
     // Runs main menu
-    while (selectedOption != '7')
+    while (selectedOption != '8')
     {
         // Empties input initially
         strcpy(userInput, "\0");
@@ -44,8 +44,9 @@ int main()
         printf("\t4: Search by keywords\n");
         printf("\t5: View index analysis\n");
         printf("\t6: View a node by ID\n");
-        printf("\t7: Exit Program\n");
-        printf("%sEnter a number (1-7):%s ", PROMPT_COLOUR, USER_COLOUR);
+        printf("\t7: View breakdown of a specific index\n");
+        printf("\t8: Exit Program\n");
+        printf("%sEnter a number (1-8):%s ", PROMPT_COLOUR, USER_COLOUR);
 
         // Gets input (reads via scanf, then clears buffer if failed reading)
         fgets(userInput, MAX_CMD_INPUT, stdin);
@@ -80,6 +81,10 @@ int main()
                 MenuDisplayEntireNode(dataNodesHead);
                 break;
             case '7':
+                printf("%s\n## Viewing a specific search index ##\n", TITLE_COLOUR);
+                MenuViewSpecificIndexAnalysis(wordHashTable);
+                break;
+            case '8':
                 printf("%sExiting...\n", INFO_COLOUR);
                 break;
             default:
@@ -97,6 +102,7 @@ int main()
         if(wordHashTable->valuesArray[i] != NULL)
         {
             ClearAbstractStack(wordHashTable->valuesArray[i]);
+            wordHashTable->valuesArray[i] = NULL;
         }
     }
 

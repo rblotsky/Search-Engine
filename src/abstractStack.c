@@ -160,6 +160,13 @@ void ClearAbstractStack(AbstractStackNode* head)
         nextNode = currentNode->next;
         free(currentNode);
         currentNode = nextNode;
+
+        // Prints error if next node is head, as that should never happen
+        if(nextNode == head)
+        {
+            printf("%sERROR: ClearAbstractStack found a loop back to HEAD!%s\n", RED_BOLD, DEFAULT_COLOUR);
+            return;
+        }
     }
 }
 
