@@ -539,7 +539,7 @@ void MenuViewSpecificIndexAnalysis(HashTable* wordHashTable)
     extractedWords = ExtractItems(inputText, WORD_SEPARATORS, &numWords);
 
     // Only tries retrieving if there is at least one word
-    if(numWords >= 0)
+    if(numWords > 0)
     {
         // Tries retrieving a stack from the hash table
         retrievedStack = RetrieveHashTableItem(wordHashTable, extractedWords[0]);
@@ -574,6 +574,16 @@ void MenuViewSpecificIndexAnalysis(HashTable* wordHashTable)
             printf("%sTotal nodes in this index: %s%d\n", TITLE_COLOUR, INFO_COLOUR, numDataNodes);
             printf("%sAverage text length in chars: %s%0.2lf\n", TITLE_COLOUR, INFO_COLOUR, (float)totalNodeLength/(float)numDataNodes);
         }
+
+        else
+        {
+            printf("%sNo index found for this word.\n", INFO_COLOUR);
+        }
+    }
+
+    else
+    {
+        printf("%sERROR: No words entered!\n", ERROR_COLOUR);
     }
 
     // Frees the extracted words
