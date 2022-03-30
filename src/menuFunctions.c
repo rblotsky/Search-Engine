@@ -39,7 +39,10 @@ void MenuAddNodeFromFile(DataNode** dataListHead, HashTable* wordHashTable)
     char* inputFileFullPath = NULL;
     clock_t indexStartTime, indexEndTime;
 
-    // Asks user for file name
+    // Asks user for file name or path
+    printf("%sNote: You can enter a directory or a file. If you enter a directory,\n", INFO_COLOUR);
+    printf("the program will index each file as a separate data item. If you enter\n");
+    printf("an individual file path, it will index each line in the file separately.\n");
     printf("%sEnter a file name (Max %d chars): %s",PROMPT_COLOUR, MAX_CMD_INPUT, USER_COLOUR);
     fgets(inputPath, MAX_CMD_INPUT, stdin);
     fflush(stdin);
