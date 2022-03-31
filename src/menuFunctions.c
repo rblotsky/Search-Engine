@@ -199,7 +199,11 @@ void MenuDisplayNodes(DataNode* dataListHead)
     // Variable declaration
     int nodesPrinted = 0;
     DataNode* currentNode = dataListHead;
-    int nodeCount = GetNumDataNodes(dataListHead);
+    int nodeCount = 0;
+
+    // Gets amount of nodes
+    printf("%sCalculating number of data nodes...\n", INFO_COLOUR);
+    nodeCount = GetNumDataNodes(dataListHead);
 
     // Goes through all nodes and displays them (reverse order by ID b/c not recursive)
     while(currentNode != NULL)
