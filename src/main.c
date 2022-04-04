@@ -92,23 +92,7 @@ int main()
         }
     }
 
-    // Before closing, clears all allocated memory
-    printf("%sFreeing memory...\n", INFO_COLOUR);
-    ClearDataList(dataNodesHead);
-
-    // Clears all indexed nodes
-    for(int i = 0; i < wordHashTable->size; i++)
-    {
-        if(wordHashTable->valuesArray[i] != NULL)
-        {
-            ClearAbstractStack(wordHashTable->valuesArray[i]);
-            wordHashTable->valuesArray[i] = NULL;
-        }
-    }
-
-    ClearHashTable(wordHashTable);
-
     // Returns 0 on successful run
-    printf("Completed!\n%s", DEFAULT_COLOUR);
+    printf("Finished!\n%s", DEFAULT_COLOUR);
     return 0;
 }
