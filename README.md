@@ -15,7 +15,9 @@ This program's purpose is simply to be an exercise in writing more complex C pro
  
 # Compilation and Running
 Download: "/include/", "/src/", and "makefile"
+
 Compile: Run `make` to compile the program (requires having installed some form of Make and GCC)
+
 Run: `./SearchAlgorithm.exe` to run the program.
 
 # Input Examples
