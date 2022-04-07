@@ -14,11 +14,11 @@ This program's purpose is simply to be an exercise in writing more complex C pro
   * Hash collisions are not handled at all: if two terms have the same hash, the table will return the same index. (In this use case, this results in some extra "garbage" results potentially being given alongside correct search results)
  
 # Compilation and Running
-Download: "/include/", "/src/", and "makefile"
+**Download**: "/include/", "/src/", and "makefile"
 
-Compile: Run `make` to compile the program (requires having installed some form of Make and GCC)
+**Compile**:  Run `make` to compile the program (requires having installed some form of Make and GCC)
 
-Run: `./SearchAlgorithm.exe` to run the program.
+**Run**:      `./SearchAlgorithm.exe` to run the program.
 
 # Input Examples
 You can use any input files to test the program, but here are several interesting ones:
