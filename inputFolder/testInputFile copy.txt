@@ -1,9 +1,0 @@
-Fname,Lname,Job
-Roman,Blotsky,Student
-Bill,Gates,???
-Elon,Musk,CEO
-Jeffrey,Bezos,CEO
-Justin,Trudeau,Prime Minister
-Vladimir,Putin,Dictator
-George,Lucas,Director
-John,Williams,Composer
