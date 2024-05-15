@@ -6,6 +6,10 @@ A simple search engine in C that allows adding "data nodes" and searching within
 # Purpose
 This program's purpose is simply to be an exercise in writing more complex C programs as well as data management and search methods.
 
+# Gallery
+![image](https://github.com/rblotsky/Search-Engine/assets/58093545/1b246b32-e66a-4c46-a8a6-492ab74b0882)
+![image](https://github.com/rblotsky/Search-Engine/assets/58093545/799f2b3c-c6a1-44d0-b704-30aab905d118)
+
 # Program Functionality
 - Indexing and Searching (via Hash table):
   * Each record is split into individual words, and a reference to the record is placed in the hash table under each one of those words.
